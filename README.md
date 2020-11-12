@@ -1,7 +1,6 @@
 # Sigma Login project ⚡️
 ## API rest
 Api rest for login sigma page this page run in port 8000
-![alt text](/images/smartroute.gif);
 ## React app
 login sigma page run in port 3000
 
