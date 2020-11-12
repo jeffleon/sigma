@@ -1,7 +1,7 @@
 # Sigma Login project ⚡️
 ## API rest
 Api rest for login sigma page this page run in port 8000
-
+![alt text](/images/smartroute.gif);
 ## React app
 login sigma page run in port 3000
 
@@ -27,9 +27,10 @@ Before starting, it is important to consider the following programs in order to 
 To be able to run the application and use it in a local development environment you can follow
 the following steps:
 
-Clone the repository to have the local project:
+Clone the repository to have the local project and go inside of them
 ```
 git clone https://github.com/jeffleon/sigma.git
+cd sigma
 ```
 Before to start you need to install the dependecies
 go inside two folders and install dependencies and run npm install
