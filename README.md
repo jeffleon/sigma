@@ -1,4 +1,4 @@
-# Quick project ⚡️
+# Sigma Login project ⚡️
 ## API rest
 Api rest for login sigma page this page run in port 8000
 # views allowed to check CRUD
