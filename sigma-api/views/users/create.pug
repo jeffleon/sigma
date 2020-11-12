@@ -1,0 +1,20 @@
+extends ../layout
+block content
+    a(href='/users') Lista de Usuarios
+    br
+    h1= 'Crear un Usuario'
+    br
+    form(action='/users/create' method='post')
+        label(for='nombre') Nombre:
+        input#nombre(type='text' name='nombre')
+        br
+        label(for='departamento') Departamento:
+        input#departamento(type='text' name='departamento')
+        br
+        label(for='ciudad') Ciudad:
+        input#ciudad(name='ciudad')
+        br
+        label(for='correo') Correo:
+        input#correo(name='correo')
+        br
+        input.btn(type="submit", value="Enviar")

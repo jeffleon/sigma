@@ -1,0 +1,308 @@
+openapi: "3.0.1"
+
+info:
+  description: "API rest to login user in a develop test in Sigma"
+  version: "1.0"
+  title: "API Login Sigma"
+  contact:
+    name: "Jefferson Leon"
+    email: "jeffersonleon1527@gmail.com"
+
+servers:
+  - url: "http://localhost:8000"
+    description: "Local server"
+
+
+basePath: "/"
+schemes:
+  - "http"
+
+tags:
+- name: "Login CRUD"
+  description: "Endpoint for login"
+
+paths:
+  /api/users:
+    get:
+      tags:
+      - "Login CRUD"
+      summary: "Get a data object with the total list of Users"
+      responses:
+        200:
+          description: "Correct response from server returning a data object with a list of Users objects"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    $ref: "#/components/schemas/userResponse"
+        500:
+          description: "Response from server returning an object with an Internal Server Error message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorInternalMessage"
+    post:
+      tags:
+      - "Login CRUD"
+      summary: "Create a new User object"
+      requestBody:
+        description: "JSON required to create a new user object"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userRequest"
+      responses:
+        204:
+          description: "Correct response from server returning the created user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userResponse"
+        500:
+          description: "Response from server returning an object with an Internal Server Error message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorInternalMessage"
+  /api/users/id:
+    put:
+      tags:
+      - "Login CRUD"
+      summary: "Update a user object"
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: "string"
+        required: false
+        description: "User id to perform an update operation"
+      requestBody:
+        description: "JSON required to update a user object"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userRequestUpdate"
+      responses:
+        200:
+          description: "Correct response from server returning the updated user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userResponse"
+        404:
+          description: "Response from server returning a User not found message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorUserNotFoundMessage"
+        500:
+          description: "Response from server returning an object with an Internal Server Error message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorInternalMessage"
+    get:
+      tags:
+      - "Login CRUD"
+      summary: "Get a user object"
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: "string"
+        required: true
+        description: "User id to perform a get operation"
+      responses:
+        200:
+          description: "Correct response from server returning the searched user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userResponse"
+        404:
+          description: "Response from server returning an User not found message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorUserNotFoundMessage"
+        500:
+          description: "Response from server returning an object with an Internal Server Error message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorInternalMessage"
+    delete:
+      tags:
+      - "Login CRUD"
+      summary: "Delete a user object"
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: "string"
+        required: true
+        description: "User id to perform a delete operation"
+      responses:
+        200:
+          description: "Correct response from server an object with a succesful deletion user message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteUserMessage"
+        404:
+          description: "Response from server returning a Toll Not found message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorUserNotFoundMessage"
+        500:
+          description: "Response from server returning an object with an Internal Server Error message"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorInternalMessage"
+
+  
+components:
+  schemas:
+    nombre:
+      type: "string"
+      description: "Contain a name of a person"
+      required:
+        - nombre
+      example: "Jefferson"
+    ciudad:
+      type: "string"
+      description: "put the resident city of the person that fill the form"
+      example: "Bogota"
+    departamento:
+      type: "string"
+      description: "put the resident department of the person that fill the form"
+      example: "Antioquia"
+    correo:
+      type: "string"
+      description: "fill this field with your email"
+      example: "juan@gmail.com"
+    userRequest:
+      type: "object"
+      description: "Toll object"
+      properties:
+        coordinates:
+          schema:
+            $ref:'#/components/schemas/coordinates'
+        costs:
+          schema:
+            $ref:'#/components/schemas/costs'
+        direction:
+          schema:
+            $ref:'#/components/schemas/direction'
+        department:
+          schema:
+            $ref:'#/components/schemas/department'
+        status:
+          schema:
+            $ref:'#/components/schemas/status'
+        group:
+          schema:
+            $ref:'#/components/schemas/group'
+        name:
+          schema:
+            $ref:'#/components/schemas/name'
+        operator:
+          schema:
+            $ref:'#/components/schemas/operator'
+      required:
+        - coordinates
+        - costs
+        - name
+      example: {"nombre": "Tatiana Ruiz", "departamento": "Cundinamarca", "ciudad": "Bogota", "correo": "tatianaruiz@gmail.com"}
+    userRequestUpdate:
+      type: "object"
+      description: "Toll object"
+      properties:
+        coordinates:
+          schema:
+            $ref:'#/components/schemas/coordinates'
+        costs:
+          schema:
+            $ref:'#/components/schemas/costs'
+        direction:
+          schema:
+            $ref:'#/components/schemas/direction'
+        department:
+          schema:
+            $ref:'#/components/schemas/department'
+        status:
+          schema:
+            $ref:'#/components/schemas/status'
+        group:
+          schema:
+            $ref:'#/components/schemas/group'
+        name:
+          schema:
+            $ref:'#/components/schemas/name'
+        operator:
+          schema:
+            $ref:'#/components/schemas/operator'
+      example: {"nombre": "Tatiana Ruiz", "departamento": "Cundinamarca", "ciudad": "Bogota", "correo": "tatianaruiz@gmail.com"}
+    userResponse:
+      type: "object"
+      description: "Toll object"
+      properties:
+        coordinates:
+          schema:
+            $ref:'#/components/schemas/nombre'
+        costs:
+          schema:
+            $ref:'#/components/schemas/departamento'
+        direction:
+          schema:
+            $ref:'#/components/schemas/ciudad'
+        department:
+          schema:
+            $ref:'#/components/schemas/correo'
+      example: {"id":1, "nombre": "Tatiana Ruiz", "departamento": "Cundinamarca", "ciudad": "Bogota", "correo": "tatianaruiz@gmail.com", "createdAt": "2020-11-12T08:21:13.769Z", "updatedAt": "2020-11-12T08:21:13.769Z"}
+    errorInputMessage:
+      type: "object"
+      description: "Object with an error message"
+      properties:
+        error:
+          type: "string"
+          description: "Error Input message from server"
+      required:
+        - error
+      example: {error: "Input validation failed"}
+    errorInternalMessage:
+      type: "object"
+      description: "Object with an error message"
+      properties:
+        error:
+          type: "string"
+          description: "Internal error message from server"
+      required:
+        - error
+      example: {error: "Internal Server Error"}
+    errorUserNotFoundMessage:
+      type: "object"
+      description: "Object with an error message"
+      properties:
+        error:
+          type: "string"
+          description: "Error User Not Found message from server"
+      required:
+        - error
+      example: {error: "User Not Found"}
+    deleteUserMessage:
+      type: "object"
+      description: "Object with a succesful message"
+      properties:
+        status:
+          type: "string"
+          description: "Successful deletion user message from server"
+      required:
+        - status
+      example: {status: "The user was deleted successfully"}

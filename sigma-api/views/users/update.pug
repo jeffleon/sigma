@@ -1,0 +1,21 @@
+extends ../layout
+block content
+    a(href='/users') Lista de Usuario
+    br
+    h1= 'Actualizar Usuario'
+    br
+    form(action=`/users/${user.id}/update` method='post')
+        label(for='nombre') Nombre:
+        input#nombre(type='text' name='nombre' value=user.nombre)
+        br
+        label(for='departamento') Departamento:
+        input#departamento(type='text' name='departamento' value=user.departamento)
+        br
+        label(for='ciudad') Ciudad:
+        input#ciudad(name='ciudad' value=user.ciudad)
+        br
+        label(for='correo') Correo:
+        input#correo(name='correo' value=user.correo)
+        br
+        input.btn(type="submit", value="ENVIAR")
+            
