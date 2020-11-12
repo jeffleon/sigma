@@ -28,23 +28,20 @@ Clone the repository to have the local project:
 git clone https://github.com/jeffleon/sigma.git
 ```
 Before to start you need to install the dependecies
-```
-go inside two folders and install dependencies
+go inside two folders and install dependencies and run npm install
 ```
 cd sigma
-```
 npm install
+```
+do the same in the other aplication
 ```
 cd ..
-```
 cd sigma api
-``` 
 npm install
-```
+``` 
 if database "users.sqlite3" doesn't exist for some reason do the migration for created again in sigma api go inside the folder and do the migration
 ```
 cd sigma api
-```
 node_modules/.bin/sequelize db:migrate
 ```
 # run aplications
