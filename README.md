@@ -1,6 +1,10 @@
 # Sigma Login project ⚡️
 ## API rest
 Api rest for login sigma page this page run in port 8000
+
+## React app
+login sigma page run in port 3000
+
 # views allowed to check CRUD
     - /users/
     - /users/create
